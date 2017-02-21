@@ -32,6 +32,19 @@ class Task
         return $this->id;
     }
 
+    static function find($search_id)
+    {
+        $found_Task = null;
+        $tasks = Task::getAll();
+        foreach($tasks as $task) {
+            $task_id = $task->getId();
+            if ($task_id == $search_id) {
+                $found_Task = $task;
+            }
+        }
+        return $found_Task;
+    }
+
     static function getAll()
     {
         $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
